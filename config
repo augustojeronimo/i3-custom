@@ -78,10 +78,10 @@ bindsym $mod+semicolon split toggle
 bindsym $mod+F11 fullscreen toggle
 
 # Resize
-bindsym $mod+Control Up  	grow 	width 5 px or 5 ppt
-bindsym $mod+Control Down  	shrink 	width 5 px or 5 ppt
-bindsym $mod+Control Left  	shrink 	width 5 px or 5 ppt
-bindsym $mod+Control Right  	grow 	width 5 px or 5 ppt
+bindsym $mod+Control Up  	resize grow 	height 5 px or 5 ppt
+bindsym $mod+Control Down  	resize shrink 	height 5 px or 5 ppt
+bindsym $mod+Control Left  	resize grow 	width 5 px or 5 ppt
+bindsym $mod+Control Right  	resize shrink 	width 5 px or 5 ppt
 
 
 ### Workspaces ###
