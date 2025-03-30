@@ -1,13 +1,9 @@
-# This file contains shortcut settings and use of previously installed tools.
+w# This file contains shortcut settings and use of previously installed tools.
 # Do not use without using the script available at https://github.com/augustojeronimo/i3-custom
 
 ## Reload the configuration file ##
 bindsym $mod+Shift+c	reload
 bindsym $mod+F5		reload
-
-## Base dir ##
-set $base ~/.config
-
 
 # ----- With script dependencies ----- #
 
@@ -15,38 +11,28 @@ set $base ~/.config
 font pango:jetbrains 11
 
 # Display walpaper
-exec_always feh --bg-fill $base/i3/wallpaper.png
+exec_always feh --bg-fill $HOME/.config/i3/wallpaper.png
 
 # Window compositor
-exec_always picom -b --config $base/picom/picom.conf
-
-# App Launcher
-#bindsym $mod+space exec --no-startup-id dmenu_run
-bindsym $mod+space exec rofi -show drun -config $base/rofi/config
-
+exec_always picom -f
 
 # ----- Components ----- #
 
 # Workspace bar
 bar {
-	status_command i3status -c $base/i3/i3status.conf
+	status_command i3status -c $HOME/.config/i3/i3status.conf
 	workspace_min_width 35
 
 	colors {
-		statusline #999999
+		statusline #aaaaaa
 		background #000000
 		separator  #555555
 
-		focused_workspace  #999999 #000000
-		inactive_workspace #999999 #111111
+		focused_workspace  #800080 #000000
+		inactive_workspace #888888 #222222
         }
 }
 
-# Disable window titles
-for_window [class=".*"] border none
-
-gaps inner 8
-gaps outer 0
 
 # ----- System keyboard shortcuts (designed for the Thinkpad br-abnt2 keyboard layout) ----- #
 
@@ -59,12 +45,13 @@ set $alt Mod1
 # Terminal
 bindsym $mod+Return exec terminator
 
+# App launcher
+bindsym $mod+space exec --no-startup-id dmenu_run
 
 ### Window management ###
 
 # kill focused window
 bindsym $mod+q kill
-bindsym $alt+F4 kill
 
 # Kill session
 bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pessed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
@@ -141,3 +128,4 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+

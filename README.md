@@ -14,8 +14,7 @@ sudo pacman -Syu
 
 ## Instalation dependencies
 ```
-yay -S picom-git
-sudo pacman -S feh terminator ttf-jetbrains-mono ttf-hack
+sudo pacman -S feh picom terminator ttf-jetbrains-mono ttf-hack
 ```
 
 ---

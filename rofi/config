@@ -1,0 +1,14 @@
+configuration {
+	display-drun: "drun:";
+	display-window: "<=>";
+
+	show-icons: true;
+	drun-display-format: "{icon} {name}";
+	icon-theme: "Papirus";
+
+	font: "JetBrainsMono 12";
+
+	modi: "window,run,drun";
+}
+
+@theme "themes/darkblue"
