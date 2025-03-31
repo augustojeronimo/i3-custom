@@ -41,7 +41,7 @@ sudo pacman -S ttf-jetbrains-mono ttf-hack papirus-icon-theme
 
 ```bash
 yay -S picom-git
-sudo pacman -S brightnessctl feh terminator rofi flameshot
+sudo pacman -S brightnessctl feh dunst terminator rofi flameshot
 ```
 > [Picom](https://github.com/yshui/picom) needs to be installed via `yay`, as the official `pacman` version lacks some features.  
 

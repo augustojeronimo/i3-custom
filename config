@@ -4,7 +4,7 @@
 # ==================================================
 
 # ===========================
-# 🔹 BASE SETTINGS
+# BASE SETTINGS
 # ===========================
 
 ## Reload Configuration ##
@@ -23,8 +23,14 @@ exec_always feh --bg-fill $base/wallpapers/01.png
 # Window compositor
 exec_always picom -b --config $base/picom/picom.conf
 
+# Custom Notification (for sound and brightness)
+#exec_always dunst -config $base/dunst/dunstrc &
+exec_always --no-startup-id dunst -config ~/.config/i3-custom/dunst/dunstrc &
+
+
+
 # ===========================
-# 🔹 UI CONFIGURATION
+# UI CONFIGURATION
 # ===========================
 
 ## Workspace bar ##
@@ -50,7 +56,7 @@ gaps inner 8
 gaps outer 0
 
 # ===========================
-# 🔹 KEYBINDINGS
+# KEYBINDINGS
 # ===========================
 
 ## Modifier keys ##
@@ -58,7 +64,7 @@ set $mod Mod4
 set $alt Mod1
 
 # ---------------------------
-# 🎯 Applications
+# Applications
 # ---------------------------
 
 # Terminal
@@ -72,7 +78,7 @@ bindsym Control+Print exec flameshot screen
 bindsym $mod+space exec rofi -show drun -config $base/rofi/config
 
 # ---------------------------
-# 🎯 Window Management
+# Window Management
 # ---------------------------
 
 # Kill focused window
@@ -110,7 +116,7 @@ bindsym $mod+Control+Left  resize grow width 5 px or 5 ppt
 bindsym $mod+Control+Right resize shrink width 5 px or 5 ppt
 
 # ---------------------------
-# 🎯 Workspaces
+# Workspaces
 # ---------------------------
 
 ## Focus defaults ##
@@ -157,14 +163,21 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # ---------------------------
-# 🎯 System Controls
+# System Controls
 # ---------------------------
 
-## Sound control ##
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+## Sound and Brightness control ##
+
+#bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+#bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+#bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+#bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+#bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+
+bindsym XF86AudioRaiseVolume    exec $base/dunst/volume_brightness.sh volume 5+
+bindsym XF86AudioLowerVolume    exec $base/dunst/volume_brightness.sh volume 5-
+bindsym XF86AudioMute           exec $base/dunst/volume_brightness.sh volume mute
 
 ## Brightness control ##
-bindsym XF86MonBrightnessUp exec brightnessctl set +10%
-bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp     exec $base/dunst/volume_brightness.sh brightness 10+
+bindsym XF86MonBrightnessDown   exec $base/dunst/volume_brightness.sh brightness 10-
