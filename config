@@ -1,73 +1,86 @@
-# This file contains shortcut settings and use of previously installed tools.
-# Do not use without using the script available at https://github.com/augustojeronimo/i3-custom
+# ==================================================
+# i3 Custom Configuration
+# https://github.com/augustojeronimo/i3-custom
+# ==================================================
 
-## Reload the configuration file ##
+# ===========================
+# 🔹 BASE SETTINGS
+# ===========================
+
+## Reload Configuration ##
 bindsym $mod+Shift+c	reload
 bindsym $mod+F5		reload
 
-## Base dir ##
-set $base ~/.config
-
-
-# ----- With script dependencies ----- #
+## Base directory - cloned repository ##
+set $base ~/.config/i3-custom
 
 # System font
 font pango:jetbrains 11
 
-# Display walpaper
-exec_always feh --bg-fill $base/i3/wallpaper.png
+# Display wallpaper
+exec_always feh --bg-fill $base/wallpapers/01.png
 
 # Window compositor
 exec_always picom -b --config $base/picom/picom.conf
 
-# App Launcher
-#bindsym $mod+space exec --no-startup-id dmenu_run
-bindsym $mod+space exec rofi -show drun -config $base/rofi/config
+# ===========================
+# 🔹 UI CONFIGURATION
+# ===========================
 
-
-# ----- Components ----- #
-
-# Workspace bar
+## Workspace bar ##
 bar {
-	status_command i3status -c $base/i3/i3status.conf
-	workspace_min_width 35
+    status_command i3status -c $base/i3bar/i3status.conf
+    workspace_min_width 35
 
-	colors {
-		statusline #999999
-		background #000000
-		separator  #555555
+    colors {
+        statusline #999999
+        background #000000
+        separator  #555555
 
-		focused_workspace  #999999 #000000
-		inactive_workspace #999999 #111111
-        }
+        focused_workspace  #999999 #000000
+        inactive_workspace #999999 #111111
+    }
 }
 
-# Disable window titles
+## Window appearance ##
 for_window [class=".*"] border none
 
+## Gaps ##
 gaps inner 8
 gaps outer 0
 
-# ----- System keyboard shortcuts (designed for the Thinkpad br-abnt2 keyboard layout) ----- #
+# ===========================
+# 🔹 KEYBINDINGS
+# ===========================
 
-# Sets the modifier key (Mod4: Super | Mod1: Alt)
+## Modifier keys ##
 set $mod Mod4
 set $alt Mod1
 
-### Apps ###
+# ---------------------------
+# 🎯 Applications
+# ---------------------------
 
 # Terminal
 bindsym $mod+Return exec terminator
 
+# Screenshot (Flameshot)
+bindsym Shift+Print exec flameshot gui
+bindsym Control+Print exec flameshot screen
 
-### Window management ###
+# App Launcher
+bindsym $mod+space exec rofi -show drun -config $base/rofi/config
 
-# kill focused window
+# ---------------------------
+# 🎯 Window Management
+# ---------------------------
+
+# Kill focused window
 bindsym $mod+q kill
 bindsym $alt+F4 kill
 
 # Kill session
-bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pessed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # Move window
 bindsym $mod+$alt+Up	move up
@@ -91,31 +104,32 @@ bindsym $mod+semicolon split toggle
 bindsym $mod+F11 fullscreen toggle
 
 # Resize
-bindsym $mod+Control Up  	resize grow 	height 5 px or 5 ppt
-bindsym $mod+Control Down  	resize shrink 	height 5 px or 5 ppt
-bindsym $mod+Control Left  	resize grow 	width 5 px or 5 ppt
-bindsym $mod+Control Right  	resize shrink 	width 5 px or 5 ppt
+bindsym $mod+Control+Up    resize grow height 5 px or 5 ppt
+bindsym $mod+Control+Down  resize shrink height 5 px or 5 ppt
+bindsym $mod+Control+Left  resize grow width 5 px or 5 ppt
+bindsym $mod+Control+Right resize shrink width 5 px or 5 ppt
 
+# ---------------------------
+# 🎯 Workspaces
+# ---------------------------
 
-### Workspaces ###
+## Focus defaults ##
+focus_follows_mouse no
+focus_wrapping no
 
-# Focus defaults
-focus_follows_mouse	no
-focus_wrapping		no
+## Workspace names ##
+set $ws1 "01"
+set $ws2 "02"
+set $ws3 "03"
+set $ws4 "04"
+set $ws5 "05"
+set $ws6 "06"
+set $ws7 "07"
+set $ws8 "08"
+set $ws9 "09"
+set $ws10 "10"
 
-# Names
-set $ws1	"01"
-set $ws2	"02"
-set $ws3	"03"
-set $ws4	"04"
-set $ws5	"05"
-set $ws6	"06"
-set $ws7	"07"
-set $ws8	"08"
-set $ws9	"09"
-set $ws10 	"10"
-
-# Switch
+## Switch workspaces ##
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
@@ -127,10 +141,10 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
-bindsym $mod+Page_Down	workspace next
-bindsym $mod+Page_Up	workspace prev
+bindsym $mod+Page_Down workspace next
+bindsym $mod+Page_Up   workspace prev
 
-# Move focused container
+## Move focused container to workspace ##
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -141,3 +155,16 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+
+# ---------------------------
+# 🎯 System Controls
+# ---------------------------
+
+## Sound control ##
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+## Brightness control ##
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
