@@ -63,6 +63,11 @@ gaps outer 0
 set $mod Mod4
 set $alt Mod1
 
+
+# Shutdown menu
+bindsym Control+$alt+Delete exec $base/rofi/shutdown_menu.sh
+
+
 # ---------------------------
 # Applications
 # ---------------------------
