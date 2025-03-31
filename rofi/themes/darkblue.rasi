@@ -87,7 +87,7 @@ element selected {
 
 element selected normal, element selected active {
     background-color: @accent-color;
-    border-radius: 25% 5;
+    border-radius: 5;
 }
 
 element selected urgent {
@@ -97,7 +97,7 @@ element selected urgent {
 element-icon {
     padding: 6;
     border-radius: 100%;
-    size: 1em;
+    size: 0.9em;
     background-color: @bg0;
 }
 

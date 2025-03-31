@@ -21,7 +21,7 @@ font pango:jetbrains 11
 exec_always feh --bg-fill $base/wallpapers/01.png
 
 # Window compositor
-exec_always picom -b --config $base/picom/picom.conf
+exec_always --no-startup-id picom -b --config $base/picom/picom.conf
 
 # Custom Notification (for sound and brightness)
 #exec_always dunst -config $base/dunst/dunstrc &
@@ -49,11 +49,18 @@ bar {
 }
 
 ## Window appearance ##
-for_window [class=".*"] border none
+for_window [class=".*"] border pixel 2
+
+# class		border    background  text      indicator  child_border
+client.focused	#4a0072   #4a0072     #4a0072	#720068    #4a0072
+
 
 ## Gaps ##
 gaps inner 8
 gaps outer 0
+
+smart_gaps on
+
 
 # ===========================
 # KEYBINDINGS
@@ -90,8 +97,8 @@ bindsym $mod+space exec rofi -show drun -config $base/rofi/config
 bindsym $mod+q kill
 bindsym $alt+F4 kill
 
-# Kill session
-bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# Kill session (Bad)
+# bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # Move window
 bindsym $mod+$alt+Up	move up
@@ -155,17 +162,18 @@ bindsym $mod+0 workspace number $ws10
 bindsym $mod+Page_Down workspace next
 bindsym $mod+Page_Up   workspace prev
 
-## Move focused container to workspace ##
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+## Move focused container and switch workspace ##
+bindsym $mod+Shift+1 move container to workspace $ws1;  workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2;  workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3;  workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4;  workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5;  workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6;  workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7;  workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8;  workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9;  workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10; workspace number $ws10
+
 
 # ---------------------------
 # System Controls

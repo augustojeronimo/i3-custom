@@ -1,12 +1,11 @@
 #!/bin/bash
 
-# Opções de desligamento
-options="Shutdown\nReboot\nLock\nCancel"
+# Shutdown options
+options="Shutdown\nReboot\nLock\nLogout\nCancel"
 
-# Usando o rofi para mostrar o menu
+# Using Rofi to show menu 
 choice=$(echo -e "$options" | rofi -dmenu -theme ~/.config/i3-custom/rofi/themes/darkblue -p "Shutdown/Options")
 
-# Realizando ação de acordo com a escolha
 case "$choice" in
     "Shutdown")
         poweroff
@@ -16,6 +15,9 @@ case "$choice" in
         ;;
     "Lock")
         i3lock
+        ;;
+    "Logout")
+        i3-msg exit
         ;;
     "Cancel")
         exit 0

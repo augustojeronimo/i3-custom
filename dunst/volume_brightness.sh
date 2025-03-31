@@ -11,7 +11,7 @@ parse_variation() {
 }
 
 adjust_volume() {
-    VOL_MAX=100
+    VOL_MAX=150
     VOL=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | tr -d '%')
     MUTE=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
     parse_variation "$1"
