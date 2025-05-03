@@ -9,7 +9,7 @@ This setup includes pre-configured **shortcuts, themes, and essential applicatio
 To apply this configuration, clone the repository into your `~/.config` directory:  
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repo.git ~/.config/i3
+cd ~/.config && git clone https://github.com/augustojeronimo/i3-custom.git
 ```
 
 ## Backup original files  
@@ -30,18 +30,10 @@ sudo pacman -Syu
 
 Then, install the required packages:  
 
-### Fonts and icons  
-
-```bash
-sudo pacman -S ttf-jetbrains-mono ttf-hack papirus-icon-theme
-```
-> If you prefer different fonts or icons, you will need to modify some configuration files.  
-
 ### Required dependencies  
 
 ```bash
-yay -S picom-git
-sudo pacman -S brightnessctl feh dunst terminator rofi flameshot
+yay -S picom-git ttf-jetbrains-mono ttf-hack papirus-icon-theme brightnessctl feh dunst terminator rofi flameshot
 ```
 > [Picom](https://github.com/yshui/picom) needs to be installed via `yay`, as the official `pacman` version lacks some features.  
 
@@ -50,10 +42,10 @@ sudo pacman -S brightnessctl feh dunst terminator rofi flameshot
 Copy the **i3** configuration file:  
 
 ```bash
-cp config ~/.config/i3/config
+cp  ~/.config/i3-custom/config ~/.config/i3/config
 ```
 
-Then, restart your system to apply the changes.  
+Then, restart your system to apply the changes.
 
 ## Post-installation customization  
 
